@@ -1,0 +1,22 @@
+---
+description: Critères d'acceptation CA-xx du dossier — chaque test cite le critère qu'il prouve
+globs: **/*.test.*,**/*.spec.*,**/tests/**,**/e2e/**,**/__tests__/**
+alwaysApply: false
+---
+
+# Tests et critères d'acceptation
+
+Nommer chaque test avec le critère qu'il prouve (ex. « CA-06 : … »). Les 10 critères sont dans `docs/kodrudder/acceptance.feature`. Simuler les services externes ; ne jamais les appeler en test.
+
+- **CA-01** — Le projet et ses 2 tâches disparaissent
+- **CA-02** — Son statut est `À_FAIRE`
+- **CA-03** — La date de fin est effacée
+- **CA-04** — La tâche est marquée en retard
+- **CA-05** — La tâche n'est pas en retard
+- **CA-06** — Rejet avec message d'erreur
+- **CA-07** — L'avancement affiche 25 %
+- **CA-08** — 2 tâches créées, 1 erreur listée
+- **CA-09** — Aucun doublon créé
+- **CA-10** — Le projet est créé avec ses tâches
+
+Référence complète : `docs/kodrudder/02-regles-et-criteres.md`.

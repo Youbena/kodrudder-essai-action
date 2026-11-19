@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "projectId": "prj_mwlrzkon15d07ed4b44b",
+  "title": "Application de suivi de projets",
+  "url": "https://kodrudder.com",
+  "pulledAt": "2026-11-18T18:07:47.944Z",
+  "files": {
+    "AGENTS.md": {
+      "hash": "a3eca3ca87ed962c749cef6d2661d1f60074e75c2ac5277490837c66a2e2689b"
+    },
+    "CLAUDE.md": {
+      "hash": "63bc70e8bde0d4537d28b1801d29de7a802dcb405a6d125ee97463d99100e7f6"
+    },
+    ".cursor/rules/kodrudder-projet.mdc": {
+      "hash": "a484485b8021704db7c660f8e8d9712e70a8453dfbb7d47caae6e89c81e9702b"
+    },
+    ".cursor/rules/kodrudder-regles-metier.mdc": {
+      "hash": "029a8988a7b044ea19fab0c3b0feae7dd393e690c2d808f19f676b4239eedc1c"
+    },
+    ".cursor/rules/kodrudder-donnees.mdc": {
+      "hash": "bb343f822b6e04f6689a3451b370b3ee543b118b06f1e91809eb2842bd16ca3a"
+    },
+    ".cursor/rules/kodrudder-tests.mdc": {
+      "hash": "7a44726ab85ff845bd2a243cbc242e9c3e8927d3d75afb37074f8b10625f4a5b"
+    },
+    ".cursor/rules/kodrudder-plan.mdc": {
+      "hash": "0d2cf458cc84cdbbb473eaeff1aacefca4889d5c604971caa16356663b62ed0c"
+    },
+    "docs/kodrudder/00-a-lire-dabord.md": {
+      "hash": "4d79a1d9833c794e76dd723fcb68db38d3713155768df649deea95a95b45065d",
+      "sectionKey": "synthese"
+    },
+    "docs/kodrudder/01-cadrage.md": {
+      "hash": "38b0d10148afad79397fcec91bf2c5a8d3497955d65c85f76dc161b84c051d2b",
+      "sectionKey": "cadrage"
+    },
+    "docs/kodrudder/02-regles-et-criteres.md": {
+      "hash": "5170af6bc241e92d408d15e102393a8a3b30dff6d5d8072cb87d0b084af1402e",
+      "sectionKey": "regles"
+    },
+    "docs/kodrudder/03-parcours-et-ecrans.md": {
+      "hash": "2a18a1879770cefa4c1e44e6ea4a636de1f9df80439f0fff716f910d9d222b58",
+      "sectionKey": "parcours"
+    },
+    "docs/kodrudder/04-architecture-et-donnees.md": {
+      "hash": "cefc6bee74d32a1c48a837c5aa8f087dccaa246402f1d8083817e05437bb9709",
+      "sectionKey": "donnees"
+    },
+    "docs/kodrudder/05-api-et-securite.md": {
+      "hash": "3b9e14aa85563de27c448cb0b66b01a7a5955f2ac51355aeaf4a772108c975d0",
+      "sectionKey": "api"
+    },
+    "docs/kodrudder/06-plan-de-developpement.md": {
+      "hash": "e1df0116004b4fa1c7d99e48bdedc8ba4e35119c63b834eb543829763bc7860e",
+      "sectionKey": "plan"
+    },
+    "docs/kodrudder/07-relecture.md": {
+      "hash": "fa8428bc914c054c6ee4dbb6a3bb9d50283f04849f88fae7e73978400a47af4e",
+      "sectionKey": "relecture"
+    },
+    "docs/kodrudder/schema.sql": {
+      "hash": "916c5d8ccbf6ecd0b2f64e1022ffd41cc35843a8ca757936b19cddc0e24d5bd6"
+    },
+    "docs/kodrudder/tasks.json": {
+      "hash": "265aad060e87df4891e28c398fa21ea662067ed499a3634b1a379c0fe0140103"
+    },
+    "docs/kodrudder/acceptance.feature": {
+      "hash": "a8e74d0babd8acf1b01e0338a50de4c27b7ec2c3c6d8791d4a72cbf7f2d3f38f"
+    },
+    "docs/kodrudder/decisions.md": {
+      "hash": "d092a0f975e55e42d6b7308bb93d91e76bf8b7b9b5ee6aec304e3caa5ea79dc6"
+    },
+    "docs/kodrudder/sources.md": {
+      "hash": "781d26c64565928f7e6ce8b02c568e5c65cc4383e5509f6ecc14fc51a47df06a"
+    }
+  }
+}

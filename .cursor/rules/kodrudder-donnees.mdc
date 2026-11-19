@@ -1,0 +1,13 @@
+---
+description: Modèle de données du dossier — tables et contraintes à respecter dans les migrations et les requêtes
+globs: **/*.sql,**/migrations/**,**/db/**,**/schema*,**/models/**
+alwaysApply: false
+---
+
+# Données
+
+Le schéma de référence est `docs/kodrudder/schema.sql`. Ne pas inventer de table ni de colonne : si le schéma ne suffit pas, signaler l'écart.
+
+Tables : `project`, `task`.
+
+Référence complète : `docs/kodrudder/04-architecture-et-donnees.md`.

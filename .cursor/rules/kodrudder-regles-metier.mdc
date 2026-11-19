@@ -1,0 +1,18 @@
+---
+description: Règles métier RM-xx du dossier, à consulter avant d'écrire de la logique métier, des validations ou des transitions de statut
+globs: 
+alwaysApply: false
+---
+
+# Règles métier
+
+- **RM-01** — Une tâche appartient à un seul projet _(Obligatoire)_
+- **RM-02** — Statut initial d'une tâche _(`À_FAIRE`)_
+- **RM-03** — Transitions libres entre statuts _(Autorisées)_
+- **RM-04** — Une tâche est en retard si échéance < aujourd'hui et statut ≠ `TERMINÉ` _(Pas d'échéance : jamais en retard)_
+- **RM-05** — Titre obligatoire, 200 caractères max (H) _(Rejet si vide)_
+- **RM-06** — Avancement = tâches terminées / tâches totales _(0 %)_
+- **RM-07** — Import CSV : colonnes titre, projet, statut, échéance _(Projet inconnu créé)_
+- **RM-08** — Import idempotent : même titre + projet + échéance = doublon ignoré _(Doublon ignoré)_
+
+Référence complète : `docs/kodrudder/02-regles-et-criteres.md`.

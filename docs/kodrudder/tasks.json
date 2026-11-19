@@ -1,0 +1,320 @@
+{
+  "meta": {
+    "project": "Application de suivi de projets",
+    "projectId": "prj_mwlrzkon15d07ed4b44b",
+    "locale": "fr",
+    "generatedFrom": "kodrudder",
+    "updatedAt": "2026-11-18T07:05:41.286Z",
+    "warnings": []
+  },
+  "milestones": [
+    {
+      "id": "J0",
+      "title": "Jalon 1 : Socle, projets et tâches (CA-01, CA-02, CA-03, CA-06, CA-07)",
+      "tasks": [
+        "T-01",
+        "T-02",
+        "T-03",
+        "T-04"
+      ]
+    },
+    {
+      "id": "J1",
+      "title": "Jalon 2 : Échéances et retards (CA-04, CA-05)",
+      "tasks": [
+        "T-05",
+        "T-06"
+      ]
+    },
+    {
+      "id": "J2",
+      "title": "Jalon 3 : Import CSV, sauvegarde et finition (CA-08, CA-09, CA-10)",
+      "tasks": [
+        "T-07",
+        "T-08",
+        "T-09",
+        "T-10"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "code": "T-01",
+      "title": "Initialiser Expo + TypeScript, Jest, ouverture `expo-sqlite` et migration du schéma (tables `project`…",
+      "description": "Initialiser Expo + TypeScript, Jest, ouverture `expo-sqlite` et migration du schéma (tables `project`, `task`, contraintes, `PRAGMA foreign_keys=ON`)",
+      "status": "pending",
+      "dependencies": [],
+      "dependsOn": [],
+      "priority": "high",
+      "milestone": "J0",
+      "details": "",
+      "testStrategy": "`npx expo start` démarre ; test Jest : le schéma se crée et la contrainte `CHECK` rejette un titre vide",
+      "acceptanceCriteria": [],
+      "rules": [],
+      "files": ""
+    },
+    {
+      "id": 2,
+      "code": "T-02",
+      "title": "Service projets : `createProject`, `listProjects` (avancement RM-06), `deleteProject(id, confirmed)` avec…",
+      "description": "Service projets : `createProject`, `listProjects` (avancement RM-06), `deleteProject(id, confirmed)` avec cascade",
+      "status": "pending",
+      "dependencies": [
+        1
+      ],
+      "dependsOn": [
+        "T-01"
+      ],
+      "priority": "high",
+      "milestone": "J0",
+      "details": "",
+      "testStrategy": "Tests Jest : CA-01 (projet + 2 tâches supprimés), CA-07 (1/4 = 25 %), 0 % sans tâche",
+      "acceptanceCriteria": [
+        "CA-01",
+        "CA-07"
+      ],
+      "rules": [
+        "RM-01",
+        "RM-06"
+      ],
+      "files": ""
+    },
+    {
+      "id": 3,
+      "code": "T-03",
+      "title": "Service tâches : `createTask` (défaut `À_FAIRE`, validation titre `TITLE_INVALID`), `updateTask` (gestion…",
+      "description": "Service tâches : `createTask` (défaut `À_FAIRE`, validation titre `TITLE_INVALID`), `updateTask` (gestion `done_at`), `deleteTask`",
+      "status": "pending",
+      "dependencies": [
+        1
+      ],
+      "dependsOn": [
+        "T-01"
+      ],
+      "priority": "high",
+      "milestone": "J0",
+      "details": "",
+      "testStrategy": "Tests Jest : CA-02, CA-03, CA-06 (espaces seuls, 201 caractères)",
+      "acceptanceCriteria": [
+        "CA-02",
+        "CA-03",
+        "CA-06"
+      ],
+      "rules": [
+        "RM-02",
+        "RM-03",
+        "RM-05"
+      ],
+      "files": ""
+    },
+    {
+      "id": 4,
+      "code": "T-04",
+      "title": "Écrans liste des projets (avancement), détail projet (liste des tâches, changement de statut) et formulaires…",
+      "description": "Écrans liste des projets (avancement), détail projet (liste des tâches, changement de statut) et formulaires de création/édition ; dialogue de confirmation avant suppression",
+      "status": "pending",
+      "dependencies": [
+        2,
+        3
+      ],
+      "dependsOn": [
+        "T-02",
+        "T-03"
+      ],
+      "priority": "high",
+      "milestone": "J0",
+      "details": "",
+      "testStrategy": "Test manuel sur simulateur : créer un projet, ajouter une tâche, la passer à `TERMINÉ` puis `EN_COURS`, supprimer le projet après confirmation",
+      "acceptanceCriteria": [
+        "CA-01",
+        "CA-02",
+        "CA-03",
+        "CA-06",
+        "CA-07"
+      ],
+      "rules": [
+        "RM-01",
+        "RM-02",
+        "RM-03",
+        "RM-05",
+        "RM-06"
+      ],
+      "files": ""
+    },
+    {
+      "id": 5,
+      "code": "T-05",
+      "title": "`getToday()` : tâches du jour et en retard avec flag `overdue` (échéance < aujourd'hui, statut ≠ `TERMINÉ`…",
+      "description": "`getToday()` : tâches du jour et en retard avec flag `overdue` (échéance < aujourd'hui, statut ≠ `TERMINÉ`, date locale)",
+      "status": "pending",
+      "dependencies": [
+        3
+      ],
+      "dependsOn": [
+        "T-03"
+      ],
+      "priority": "medium",
+      "milestone": "J1",
+      "details": "",
+      "testStrategy": "Tests Jest : échéance hier + `EN_COURS` = en retard ; échéance aujourd'hui = non ; sans échéance = jamais",
+      "acceptanceCriteria": [
+        "CA-04",
+        "CA-05"
+      ],
+      "rules": [
+        "RM-04"
+      ],
+      "files": ""
+    },
+    {
+      "id": 6,
+      "code": "T-06",
+      "title": "Champ échéance (sélecteur de date) dans le formulaire de tâche, écran « Vue du jour » et marquage visuel des…",
+      "description": "Champ échéance (sélecteur de date) dans le formulaire de tâche, écran « Vue du jour » et marquage visuel des retards dans les listes",
+      "status": "pending",
+      "dependencies": [
+        4,
+        5
+      ],
+      "dependsOn": [
+        "T-04",
+        "T-05"
+      ],
+      "priority": "medium",
+      "milestone": "J1",
+      "details": "",
+      "testStrategy": "Test manuel : une tâche d'échéance hier apparaît marquée en retard dans la vue du jour",
+      "acceptanceCriteria": [
+        "CA-04",
+        "CA-05"
+      ],
+      "rules": [
+        "RM-04"
+      ],
+      "files": ""
+    },
+    {
+      "id": 7,
+      "code": "T-07",
+      "title": "Service `importCsv` : parsing `papaparse`, validation par ligne, projet inconnu créé, statut absent =…",
+      "description": "Service `importCsv` : parsing `papaparse`, validation par ligne, projet inconnu créé, statut absent = `À_FAIRE`, déduplication par requête (y compris échéance NULL), une seule transaction, rapport `{created, ignored, errors}`",
+      "status": "pending",
+      "dependencies": [
+        2,
+        3
+      ],
+      "dependsOn": [
+        "T-02",
+        "T-03"
+      ],
+      "priority": "medium",
+      "milestone": "J2",
+      "details": "",
+      "testStrategy": "Tests Jest sur fixtures CSV : CA-08 (2 créées, 1 erreur), CA-09 (réimport sans doublon), CA-10 (projet créé)",
+      "acceptanceCriteria": [
+        "CA-08",
+        "CA-09",
+        "CA-10"
+      ],
+      "rules": [
+        "RM-07",
+        "RM-08"
+      ],
+      "files": ""
+    },
+    {
+      "id": 8,
+      "code": "T-08",
+      "title": "Écran d'import : `expo-document-picker`, appel `importCsv`, affichage du rapport (créées, ignorées, erreurs…",
+      "description": "Écran d'import : `expo-document-picker`, appel `importCsv`, affichage du rapport (créées, ignorées, erreurs par ligne)",
+      "status": "pending",
+      "dependencies": [
+        4,
+        7
+      ],
+      "dependsOn": [
+        "T-04",
+        "T-07"
+      ],
+      "priority": "medium",
+      "milestone": "J2",
+      "details": "",
+      "testStrategy": "Test manuel : importer un CSV de 3 lignes dont 1 sans titre ; le rapport affiche 2 créées, 1 erreur",
+      "acceptanceCriteria": [
+        "CA-08",
+        "CA-09",
+        "CA-10"
+      ],
+      "rules": [
+        "RM-07",
+        "RM-08"
+      ],
+      "files": ""
+    },
+    {
+      "id": 9,
+      "code": "T-09",
+      "title": "`exportBackup()` : export du fichier SQLite via la feuille de partage système ; message d'erreur en cas…",
+      "description": "`exportBackup()` : export du fichier SQLite via la feuille de partage système ; message d'erreur en cas d'échec",
+      "status": "pending",
+      "dependencies": [
+        1
+      ],
+      "dependsOn": [
+        "T-01"
+      ],
+      "priority": "medium",
+      "milestone": "J2",
+      "details": "",
+      "testStrategy": "Test manuel sur appareil : le fichier `.sqlite` est partagé et s'ouvre avec un lecteur SQLite",
+      "acceptanceCriteria": [],
+      "rules": [],
+      "files": ""
+    },
+    {
+      "id": 10,
+      "code": "T-10",
+      "title": "Parcours hors ligne et finition : mode avion de bout en bout, navigation (projets, vue du jour, import)…",
+      "description": "Parcours hors ligne et finition : mode avion de bout en bout, navigation (projets, vue du jour, import), messages d'erreur homogènes",
+      "status": "pending",
+      "dependencies": [
+        6,
+        8,
+        9
+      ],
+      "dependsOn": [
+        "T-06",
+        "T-08",
+        "T-09"
+      ],
+      "priority": "medium",
+      "milestone": "J2",
+      "details": "",
+      "testStrategy": "`npx jest` vert ; parcours complet en mode avion sur simulateur Android ou iOS",
+      "acceptanceCriteria": [
+        "CA-01",
+        "CA-02",
+        "CA-03",
+        "CA-04",
+        "CA-05",
+        "CA-06",
+        "CA-07",
+        "CA-08",
+        "CA-09",
+        "CA-10"
+      ],
+      "rules": [
+        "RM-01",
+        "RM-02",
+        "RM-03",
+        "RM-04",
+        "RM-05",
+        "RM-06",
+        "RM-07",
+        "RM-08"
+      ],
+      "files": ""
+    }
+  ]
+}

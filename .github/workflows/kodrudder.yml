@@ -1,0 +1,71 @@
+# Généré par Kodrudder pour le dossier « Application de suivi de projets ».
+# À chaque pull request : compare le dossier au code et publie le résultat en commentaire.
+# Requis : un secret du dépôt KODRUDDER_API_KEY (Settings > Secrets and variables > Actions).
+# Les pull requests venues d'un fork ne reçoivent pas les secrets : la vérification est sautée pour elles.
+name: Kodrudder
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: kodrudder-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  drift:
+    name: 'Écart entre le dossier et le code'
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 50
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: 'Comparer le dossier au code'
+        id: check
+        env:
+          KODRUDDER_API_KEY: ${{ secrets.KODRUDDER_API_KEY }}
+          KODRUDDER_URL: 'https://kodrudder.com'
+          KODRUDDER_LANG: fr
+          KODRUDDER_SHA: ${{ github.event.pull_request.head.sha }}
+          KODRUDDER_BRANCH: ${{ github.head_ref }}
+        run: |
+          set +e
+          npx --yes kodrudder@0.1.0 check --ci --project prj_mwlrzkon15d07ed4b44b --fail-on blocking > kodrudder-report.md
+          code=$?
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          cat kodrudder-report.md
+
+      - name: 'Commenter la pull request'
+        if: always() && hashFiles('kodrudder-report.md') != ''
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require("fs");
+            const body = fs.readFileSync("kodrudder-report.md", "utf8").trim();
+            if (!body) return;
+            const marker = "<!-- kodrudder:drift -->";
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
+            const mine = comments.find(c => c.body && c.body.includes(marker));
+            const text = body.includes(marker) ? body : marker + "\n" + body;
+            if (mine) await github.rest.issues.updateComment({ owner, repo, comment_id: mine.id, body: text });
+            else await github.rest.issues.createComment({ owner, repo, issue_number, body: text });
+
+      - name: 'Résultat'
+        if: steps.check.outputs.exit_code != '0'
+        run: |
+          echo "Kodrudder a trouvé un écart au-delà du seuil (ou n'a pas pu s'exécuter) : voir le commentaire de la pull request."
+          exit ${{ steps.check.outputs.exit_code }}
